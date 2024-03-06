@@ -13,10 +13,9 @@ import java.time.Duration;
 import java.util.Random;
 
 public class Level_01_Repeat_Yourself {
+
     private WebDriver driver;
-
     private String firstName, lastName, day, month, year, emailAddress, companyName, passWord;
-
     @BeforeClass
     public void beforeClass(){
         driver = new FirefoxDriver();
@@ -28,7 +27,7 @@ public class Level_01_Repeat_Yourself {
         day = "10";
         month = "August";
         year = "1986";
-        emailAddress = "ThomasMuller" + generateRandomNumber() + "@gmail.com" ;
+        emailAddress = "thomasmuller" + generateRandomNumber() + "@gmail.com" ;
         companyName = "Bayern Munich";
         passWord = "123456789";
     }
@@ -65,8 +64,8 @@ public class Level_01_Repeat_Yourself {
     public void TC_03_MyAccount(){
         driver.findElement(By.cssSelector("a.ico-account")).click();
 
-        Assert.assertTrue(driver.findElement(By.cssSelector("input#gender-male")).isSelected());
 
+        Assert.assertTrue(driver.findElement(By.cssSelector("input#gender-male")).isSelected());
         Assert.assertEquals(driver.findElement(By.cssSelector("input#FirstName")).getAttribute("value"),firstName);
         Assert.assertEquals(driver.findElement(By.cssSelector("input#LastName")).getAttribute("value"),lastName);
 
