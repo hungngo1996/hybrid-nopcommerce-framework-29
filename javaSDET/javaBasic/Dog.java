@@ -4,7 +4,11 @@ public class Dog extends Annimal{
 
     String annimalName; //Biến Global
 
-
+    /**
+     * @param 
+     *
+     *
+     * */
     public void getName(String annimalName){// Biến Local
         this.annimalName = annimalName;
     }
@@ -12,6 +16,7 @@ public class Dog extends Annimal{
         super(Annimal); //gọi tới constructor của lớp cha Annimal
         System.out.println("AA");
     }
+
     @Override
     public void sleep() {
         System.out.println("Sleeping...");
