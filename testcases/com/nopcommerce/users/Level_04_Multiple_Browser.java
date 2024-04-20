@@ -2,10 +2,13 @@ package com.nopcommerce.users;
 
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.CustomerInfoPageObject;
 import pageObjects.HomePageObject;
@@ -13,21 +16,19 @@ import pageObjects.LoginPageObject;
 import pageObjects.RegisterPageObject;
 
 import java.time.Duration;
-import java.util.Random;
 
-public class Level_03_Page_Object_Pattern extends BaseTest {
+public class Level_04_Multiple_Browser extends BaseTest {
     private WebDriver driver;
     private HomePageObject homepage;
     private LoginPageObject loginPage;
     private CustomerInfoPageObject customerInfoPage;
     private RegisterPageObject registerPage;
     private String firstName, lastName, day, month, year, emailAddress, companyName, password;
+    @Parameters("browser")
     @BeforeClass
-    public void beforeClass() {
-        driver = new FirefoxDriver();
-        driver.get("https://demo.nopcommerce.com/");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.manage().window().maximize();
+    public void beforeClass(String browserName) {
+        System.out.println("browserName = " + browserName);
+        driver = getBrowserDriver(browserName);
         firstName = "Thomas";
         lastName = "Muller";
         day = "29";
@@ -37,6 +38,7 @@ public class Level_03_Page_Object_Pattern extends BaseTest {
         companyName = "Bayern Munich";
         password = "123456789";
         homepage = new HomePageObject(driver);
+
     }
     @Test
     public void User_01_Register() {
