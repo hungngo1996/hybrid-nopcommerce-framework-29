@@ -12,7 +12,7 @@ import pageObjects.HomePageObject;
 import pageObjects.LoginPageObject;
 import pageObjects.RegisterPageObject;
 
-public class Level_04_Multiple_Browser extends BaseTest {
+public class Level_06_Page_Generator_02 extends BaseTest {
     private WebDriver driver;
     private HomePageObject homepage;
     private LoginPageObject loginPage;
@@ -37,15 +37,10 @@ public class Level_04_Multiple_Browser extends BaseTest {
     }
     @Test
     public void User_01_Register() {
-        // Action 1
-        homepage.openRegisterPage();
-
         // Từ homepage qua registerpage
-
-        registerPage = new RegisterPageObject(driver);
+        registerPage = homepage.openRegisterPage();
 
         registerPage.clickToMaleRadio();
-
         registerPage.enterToFirstNameTextbox(firstName);
         registerPage.enterToLastNameTextbox(lastName);
         registerPage.selectDayDropdown(day);
@@ -61,21 +56,15 @@ public class Level_04_Multiple_Browser extends BaseTest {
     }
     @Test
     public void User_02_Login() {
-        registerPage.openLoginPage();
+        loginPage = registerPage.openLoginPage();
 
-        loginPage = new LoginPageObject(driver);
-        loginPage.enterToEmailTextBox(emailAddress);
-        loginPage.enterToPasswordTextBox(password);
-        loginPage.clickToLoginButton();
-
-        homepage = new HomePageObject(driver);
+        homepage = loginPage.loginToSystem(emailAddress, password);
 
         Assert.assertTrue(homepage.isMyAccountLinkDisplayed());
     }
     @Test
     public void User_03_MyAccount() {
-        homepage.openCustomerInfoPage();
-        customerInfoPage = new CustomerInfoPageObject(driver);
+        customerInfoPage = homepage.openCustomerInfoPage();
 
         Assert.assertTrue(customerInfoPage.isGenderMaleSelected());
         Assert.assertEquals(customerInfoPage.getFirstNameTextboxValue(),firstName);

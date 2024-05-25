@@ -7,17 +7,17 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.CustomerInfoPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.*;
 
-public class Level_04_Multiple_Browser extends BaseTest {
+public class Level_07_Switch_Page_Object extends BaseTest {
     private WebDriver driver;
     private HomePageObject homepage;
     private LoginPageObject loginPage;
     private CustomerInfoPageObject customerInfoPage;
     private RegisterPageObject registerPage;
+    private AddressPageObject addressPage;
+    private OrderPageObject orderPage;
+    private RewardPointPageObject rewardPointPage;
     private String firstName, lastName, day, month, year, emailAddress, companyName, password;
     @Parameters("browser")
     @BeforeClass
@@ -32,20 +32,15 @@ public class Level_04_Multiple_Browser extends BaseTest {
         emailAddress = "thomasmuller" + generateRandomNumber() + "@gmail.com";
         companyName = "Bayern Munich";
         password = "123456789";
-        homepage = new HomePageObject(driver);
+        homepage = PageGenerator.getHomePage(driver);
 
     }
     @Test
     public void User_01_Register() {
-        // Action 1
-        homepage.openRegisterPage();
-
         // Từ homepage qua registerpage
-
-        registerPage = new RegisterPageObject(driver);
+        registerPage = homepage.openRegisterPage();
 
         registerPage.clickToMaleRadio();
-
         registerPage.enterToFirstNameTextbox(firstName);
         registerPage.enterToLastNameTextbox(lastName);
         registerPage.selectDayDropdown(day);
@@ -61,21 +56,15 @@ public class Level_04_Multiple_Browser extends BaseTest {
     }
     @Test
     public void User_02_Login() {
-        registerPage.openLoginPage();
+        loginPage = registerPage.openLoginPage();
 
-        loginPage = new LoginPageObject(driver);
-        loginPage.enterToEmailTextBox(emailAddress);
-        loginPage.enterToPasswordTextBox(password);
-        loginPage.clickToLoginButton();
-
-        homepage = new HomePageObject(driver);
+        homepage = loginPage.loginToSystem(emailAddress, password);
 
         Assert.assertTrue(homepage.isMyAccountLinkDisplayed());
     }
     @Test
     public void User_03_MyAccount() {
-        homepage.openCustomerInfoPage();
-        customerInfoPage = new CustomerInfoPageObject(driver);
+        customerInfoPage = homepage.openCustomerInfoPage();
 
         Assert.assertTrue(customerInfoPage.isGenderMaleSelected());
         Assert.assertEquals(customerInfoPage.getFirstNameTextboxValue(),firstName);
@@ -85,6 +74,23 @@ public class Level_04_Multiple_Browser extends BaseTest {
         Assert.assertEquals(customerInfoPage.getyearDropDownSelectedValue(),year);
         Assert.assertEquals(customerInfoPage.getEmailTextboxValue(),emailAddress);
 
+    }
+    @Test
+    public void User_04_Switch_Page() {
+        // Customer Infor > Address
+        addressPage  = customerInfoPage.openAddressPage(driver);
+
+        // Address > Reward Point
+        rewardPointPage = addressPage.openRewardPointPage(driver);
+
+        // Reward Point > Order
+        orderPage = rewardPointPage.openOrderPage(driver);
+
+        // Order > Address
+        addressPage = orderPage.openAddressPage(driver);
+
+        // Address > Customer Infor
+        orderPage = addressPage.openCustomerInfoPage(driver);
     }
     @AfterClass
     public void afterClass() {

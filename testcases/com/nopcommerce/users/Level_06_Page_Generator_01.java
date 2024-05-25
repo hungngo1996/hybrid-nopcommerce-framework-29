@@ -12,7 +12,7 @@ import pageObjects.HomePageObject;
 import pageObjects.LoginPageObject;
 import pageObjects.RegisterPageObject;
 
-public class Level_04_Multiple_Browser extends BaseTest {
+public class Level_06_Page_Generator_01 extends BaseTest {
     private WebDriver driver;
     private HomePageObject homepage;
     private LoginPageObject loginPage;
@@ -41,7 +41,6 @@ public class Level_04_Multiple_Browser extends BaseTest {
         homepage.openRegisterPage();
 
         // Từ homepage qua registerpage
-
         registerPage = new RegisterPageObject(driver);
 
         registerPage.clickToMaleRadio();
