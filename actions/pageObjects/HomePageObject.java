@@ -16,9 +16,10 @@ public class HomePageObject extends BasePage {
     // 4. Có tham số hoặc không
     // 5. Trong trường hợp không define hàm khởi tạo thì JVM sẽ tạo ra một hàm khởi tạo rỗng
 
-    public void clickToRegisterLink() {
+    public RegisterPageObject openRegisterPage() {
         waitForElementClickable(driver, HomePageUI.REGISTER_LINK);
         clickToElement(driver, HomePageUI.REGISTER_LINK);
+        return PageGenerator.getRegisterPage(driver);
     }
 
     public boolean isMyAccountLinkDisplayed() {
@@ -26,8 +27,9 @@ public class HomePageObject extends BasePage {
         return isElementDisplayed(driver,HomePageUI.MY_ACCOUNT_LINK);
     }
 
-    public void clickToMyAccountLink() {
+    public CustomerInfoPageObject openCustomerInfoPage() {
         waitForElementVisible(driver,HomePageUI.MY_ACCOUNT_LINK);
         clickToElement(driver, HomePageUI.MY_ACCOUNT_LINK);
+        return PageGenerator.getCustomerInfoPage(driver);
     }
 }
