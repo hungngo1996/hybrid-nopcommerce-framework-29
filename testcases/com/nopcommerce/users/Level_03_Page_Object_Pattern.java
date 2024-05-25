@@ -13,6 +13,7 @@ import pageObjects.LoginPageObject;
 import pageObjects.RegisterPageObject;
 
 import java.time.Duration;
+import java.util.Random;
 
 public class Level_03_Page_Object_Pattern extends BaseTest {
     private WebDriver driver;
@@ -40,7 +41,7 @@ public class Level_03_Page_Object_Pattern extends BaseTest {
     @Test
     public void User_01_Register() {
         // Action 1
-        homepage.openRegisterPage();
+        homepage.clickToRegisterLink();
 
         // Từ homepage qua registerpage
 
@@ -63,7 +64,7 @@ public class Level_03_Page_Object_Pattern extends BaseTest {
     }
     @Test
     public void User_02_Login() {
-        registerPage.openLoginPage();
+        registerPage.clickToLoginLink();
 
         loginPage = new LoginPageObject(driver);
         loginPage.enterToEmailTextBox(emailAddress);
@@ -76,7 +77,7 @@ public class Level_03_Page_Object_Pattern extends BaseTest {
     }
     @Test
     public void User_03_MyAccount() {
-        homepage.openCustomerInfoPage();
+        homepage.clickToMyAccountLink();
         customerInfoPage = new CustomerInfoPageObject(driver);
 
         Assert.assertTrue(customerInfoPage.isGenderMaleSelected());
