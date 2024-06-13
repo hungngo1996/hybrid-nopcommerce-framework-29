@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import pageObjects.*;
 import pageObjects.user.*;
 
-public class Level_07_Switch_Page_Object extends BaseTest {
+public class Level_08_Page_Navigation extends BaseTest {
     private WebDriver driver;
     private UserHomePO homepage;
     private UserLoginPO loginPage;
@@ -79,19 +79,19 @@ public class Level_07_Switch_Page_Object extends BaseTest {
     @Test
     public void User_04_Switch_Page() {
         // Customer Infor > Address
-        addressPage  = customerInfoPage.openAddressPage(driver);
+        addressPage  = customerInfoPage.openAddressPage();
 
         // Address > Reward Point
-        rewardPointPage = addressPage.openRewardPointPage(driver);
+        rewardPointPage = addressPage.openRewardPointPage();
 
         // Reward Point > Order
-        orderPage = rewardPointPage.openOrderPage(driver);
+        orderPage = rewardPointPage.openOrderPage();
 
         // Order > Address
-        addressPage = orderPage.openAddressPage(driver);
+        addressPage = orderPage.openAddressPage();
 
         // Address > Customer Infor
-        customerInfoPage = addressPage.openCustomerInfoPage(driver);
+        customerInfoPage = addressPage.openCustomerInfoPage();
     }
     @AfterClass
     public void afterClass() {

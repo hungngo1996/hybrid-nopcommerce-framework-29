@@ -1,6 +1,6 @@
-package pageUIs;
+package pageUIs.user;
 
-public class HomePageUI {
+public class UserHomePageUI {
     public static final String REGISTER_LINK = "//a[@class='ico-register']";
     // Public: gọi hàm/biến ra sử dụng bình thường
     // Private/ default: khác package ko dùng được

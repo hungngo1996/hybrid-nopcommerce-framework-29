@@ -2,7 +2,6 @@ package com.nopcommerce.users;
 
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -12,10 +11,6 @@ import pageFactory.CustomerInfoPageFactory;
 import pageFactory.HomePageFactory;
 import pageFactory.LoginPageFactory;
 import pageFactory.RegisterPageFactory;
-import pageObjects.CustomerInfoPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
 
 public class Level_05_Page_Factory extends BaseTest {
     private WebDriver driver;

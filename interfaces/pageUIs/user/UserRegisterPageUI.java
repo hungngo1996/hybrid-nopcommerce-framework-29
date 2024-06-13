@@ -1,6 +1,6 @@
-package pageUIs;
+package pageUIs.user;
 
-public class RegisterPageUI {
+public class UserRegisterPageUI {
     public static final String GENDER_MALE_RADIO = "//input[@id='gender-male']";
     public static final String FIRST_NAME_TEXTBOX = "//input[@id='FirstName']";
     public static final String LAST_NAME_TEXTBOX = "//input[@id='LastName']";
@@ -14,4 +14,5 @@ public class RegisterPageUI {
     public static final String REGISTER_BUTTON = "//button[@id='register-button']";
     public static final String REGISTER_SUCCESS_MESSAGE = "//div[@class='result']";
     public static final String LOGIN_LINK = "//a[@class='ico-login']";
+    public static final String LOGOUT_LINK = "//a[@class='ico-logout']";
 }
