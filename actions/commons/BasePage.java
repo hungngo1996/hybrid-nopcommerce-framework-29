@@ -44,7 +44,7 @@ public class BasePage {
         driver.navigate().refresh();
     }
     public Alert waitAlertPresence(WebDriver driver){
-         return new WebDriverWait(driver, Duration.ofSeconds(15)).until(ExpectedConditions.alertIsPresent());
+         return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.alertIsPresent());
     }
     public void acceptToAlert(WebDriver driver){
         waitAlertPresence(driver).accept();
@@ -88,10 +88,41 @@ public class BasePage {
         driver.switchTo().window(parentID);
     }
     public WebElement getElement(WebDriver driver, String locator){
-        return driver.findElement(By.xpath(locator));
+        return driver.findElement(getByLocator(locator));
     }
     public List<WebElement> getListElement(WebDriver driver, String locator){
-        return driver.findElements(By.xpath(locator));
+        return driver.findElements(getByLocator(locator));
+    }
+    // Truyen tham so vao loai gi se tra ve kieu by tuong ung
+    // String prefix: css/id/name/class => By.css/ By.id/ By.name/..
+    // Convention: css/ Css/ CSS - id/ ID/ Id/ iD
+    // css=buttonlogin => By.cssSelector("button#login");
+    // Css=buttonlogin => By.cssSelector("button#login");
+    // CSS=buttonlogin => By.cssSelector("button#login");
+    public By getByLocator(String prefixLocator){
+        By by = null;
+        if (prefixLocator.startsWith("css") || prefixLocator.startsWith("CSS") || prefixLocator.startsWith("Css")){
+            by = By.cssSelector(prefixLocator.substring(4));
+        } else if (prefixLocator.startsWith("id") || prefixLocator.startsWith("Id") || prefixLocator.startsWith("ID"))
+        {
+            by = By.id(prefixLocator.substring(3));
+        } else if (prefixLocator.startsWith("class") || prefixLocator.startsWith("Class") || prefixLocator.startsWith("CLASS"))
+        {
+            by = By.className(prefixLocator.substring(6));
+        } else if (prefixLocator.startsWith("tagname") || prefixLocator.startsWith("Tagname") || prefixLocator.startsWith("TAGNAME"))
+        {
+            by = By.tagName(prefixLocator.substring(8));
+        } else if (prefixLocator.startsWith("Xpath") || prefixLocator.startsWith("XPath") || prefixLocator.startsWith("XPATH"))
+        {
+            by = By.xpath(prefixLocator.substring(6));
+        }
+        else if (prefixLocator.startsWith("name") || prefixLocator.startsWith("Name") || prefixLocator.startsWith("NAME"))
+        {
+            by = By.name(prefixLocator.substring(5));
+        }else {
+            throw new RuntimeException("Locator type is not support!");
+        }
+        return by;
     }
     public By getByXpath(String locator){
         return By.xpath(locator);
@@ -250,19 +281,19 @@ public class BasePage {
     }
 
     public void  waitForElementVisible(WebDriver driver, String locator){
-        new WebDriverWait(driver,Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
+        new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locator)));
     }
     public void  waitForElementPresence(WebDriver driver, String locator){
-        new WebDriverWait(driver,Duration.ofSeconds(30)).until(ExpectedConditions.presenceOfElementLocated(getByXpath(locator)));
+        new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.presenceOfElementLocated(getByLocator(locator)));
     }
     public void  waitForElementInvisible(WebDriver driver, String locator){
-        new WebDriverWait(driver,Duration.ofSeconds(30)).until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator)));
+        new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locator)));
     }
     public void  waitForElementSelected(WebDriver driver, String locator){
-        new WebDriverWait(driver,Duration.ofSeconds(30)).until(ExpectedConditions.elementToBeSelected(getByXpath(locator)));
+        new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.elementToBeSelected(getByLocator(locator)));
     }
     public void  waitForElementClickable(WebDriver driver, String locator){
-        new WebDriverWait(driver,Duration.ofSeconds(30)).until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
+        new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.elementToBeClickable(getByLocator(locator)));
     }
     public UserAddressPO openAddressPage(WebDriver driver) {
         waitForElementClickable(driver, BasePageUI.ADDRESS_LINK);
