@@ -33,4 +33,8 @@ public class UserSidebarPO extends BasePage {
         clickToElement(driver, UserSideBarPageUI.ORDER_LINK);
         return PageGenerator.getUserOrderPage(driver);
     }
+    public void openSidebarLinkByPageNames(String pageName) {
+        waitForElementClickable(driver, UserSideBarPageUI.DYNAMIC_LINK_BY_PAGE_NAME, pageName);
+        clickToElement(driver, UserSideBarPageUI.DYNAMIC_LINK_BY_PAGE_NAME, pageName);
+    }
 }

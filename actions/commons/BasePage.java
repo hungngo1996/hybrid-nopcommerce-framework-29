@@ -1,5 +1,6 @@
 package commons;
 
+import graphql.language.ObjectValue;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
@@ -124,6 +125,12 @@ public class BasePage {
         }
         return by;
     }
+    private String castParameter(String locator, String... restParameter){
+        return String.format(locator, (Object[]) restParameter);
+    }
+    public void clickToElement(WebDriver driver, String locator, String restParameter){
+        getElement(driver, castParameter(locator, restParameter)).click();
+    }
     public By getByXpath(String locator){
         return By.xpath(locator);
     }
@@ -131,10 +138,18 @@ public class BasePage {
         getElement(driver, locator).click();
     }
     public void sendKeyToElement(WebDriver driver, String locator, String keysToSend){
+        getElement(driver, locator).clear();
         getElement(driver, locator).sendKeys(keysToSend);
+    }
+    public void sendKeyToElement(WebDriver driver, String locator, String keysToSend, String restParameter){
+        getElement(driver, castParameter(locator, restParameter)).clear();
+        getElement(driver, castParameter(locator, restParameter)).sendKeys(keysToSend);
     }
     public void selectItemInDropdown(WebDriver driver, String locator, String textItem){
         new Select(getElement(driver, locator)).selectByVisibleText(textItem);
+    }
+    public void selectItemInDropdown(WebDriver driver, String locator, String textItem, String restParameter){
+        new Select(getElement(driver, castParameter(locator, restParameter))).selectByVisibleText(textItem);
     }
     public String getselectItemInDropdown(WebDriver driver, String locator){
         return new Select(getElement(driver, locator)).getFirstSelectedOption().getText();
@@ -162,9 +177,17 @@ public class BasePage {
     {
         return getElement(driver,locator).getAttribute(attributeName);
     }
+    public String getElementAttribute(WebDriver driver, String locator, String attributeName, String restParameter)
+    {
+        return getElement(driver,castParameter(locator, restParameter)).getAttribute(attributeName);
+    }
     public String getElementText(WebDriver driver, String locator)
     {
         return getElement(driver,locator).getText();
+    }
+    public String getElementText(WebDriver driver, String locator, String restParameter)
+    {
+        return getElement(driver,castParameter(locator, restParameter)).getText();
     }
     public void getElementCssValue(WebDriver driver, String locator, String propertyName){
         getElement(driver, locator).getCssValue(propertyName);
@@ -190,11 +213,17 @@ public class BasePage {
     public boolean isElementDisplayed(WebDriver driver, String locator){
         return getElement(driver,locator).isDisplayed();
     }
+    public boolean isElementDisplayed(WebDriver driver, String locator, String restParameter){
+        return getElement(driver,castParameter(locator, restParameter)).isDisplayed();
+    }
     public boolean isElementEnabled(WebDriver driver, String locator){
         return getElement(driver,locator).isEnabled();
     }
     public boolean isElementSelected(WebDriver driver, String locator){
         return getElement(driver,locator).isSelected();
+    }
+    public boolean isElementSelected(WebDriver driver, String locator, String restParameter){
+        return getElement(driver,castParameter(locator, restParameter)).isSelected();
     }
     public void switchToIFrame(WebDriver driver, String locator){
         driver.switchTo().frame(getElement(driver,locator));
@@ -283,6 +312,9 @@ public class BasePage {
     public void  waitForElementVisible(WebDriver driver, String locator){
         new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locator)));
     }
+    public void  waitForElementVisible(WebDriver driver, String locator, String restParameter){
+        new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.visibilityOfElementLocated(getByLocator(castParameter(locator, restParameter))));
+    }
     public void  waitForElementPresence(WebDriver driver, String locator){
         new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.presenceOfElementLocated(getByLocator(locator)));
     }
@@ -292,8 +324,14 @@ public class BasePage {
     public void  waitForElementSelected(WebDriver driver, String locator){
         new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.elementToBeSelected(getByLocator(locator)));
     }
+    public void  waitForElementSelected(WebDriver driver, String locator, String restParameter){
+        new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.elementToBeSelected(getByLocator(castParameter(locator, restParameter))));
+    }
     public void  waitForElementClickable(WebDriver driver, String locator){
         new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.elementToBeClickable(getByLocator(locator)));
+    }
+    public void  waitForElementClickable(WebDriver driver, String locator, String restParameter){
+        new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.elementToBeClickable(getByLocator(castParameter(locator, restParameter))));
     }
     public UserAddressPO openAddressPage(WebDriver driver) {
         waitForElementClickable(driver, BasePageUI.ADDRESS_LINK);

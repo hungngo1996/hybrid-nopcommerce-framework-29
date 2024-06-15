@@ -7,7 +7,7 @@
     <test name="Run on Firefox browser">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="com.nopcommerce.users.Level_09_Swich_Site_Url" />
+            <class name="com.nopcommerce.users.Level_10_Dynamic_Locator" />
         </classes>
     </test>
 </suite>
