@@ -8,9 +8,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.*;
-import pageObjects.admin.AdminDashboardPO;
-import pageObjects.admin.AdminLoginPO;
-import pageObjects.user.*;
+import pageObjects.nopCommerce.admin.AdminDashboardPO;
+import pageObjects.nopCommerce.admin.AdminLoginPO;
+import pageObjects.nopCommerce.user.UserCustomerInfoPO;
+import pageObjects.nopCommerce.user.UserHomePO;
+import pageObjects.nopCommerce.user.UserLoginPO;
+import pageObjects.nopCommerce.user.UserRegisterPO;
 
 public class Level_09_Swich_Site_Url extends BaseTest {
     private WebDriver driver;

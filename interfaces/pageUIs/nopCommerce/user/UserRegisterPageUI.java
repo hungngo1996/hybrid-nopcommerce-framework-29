@@ -1,4 +1,4 @@
-package pageUIs.user;
+package pageUIs.nopCommerce.user;
 
 public class UserRegisterPageUI {
     public static final String GENDER_MALE_RADIO = "Xpath=//input[@id='gender-male']";

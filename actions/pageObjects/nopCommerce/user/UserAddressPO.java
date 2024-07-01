@@ -1,14 +1,15 @@
-package pageObjects.user;
+package pageObjects.nopCommerce.user;
 
 import org.openqa.selenium.WebDriver;
 
-public class UserOrderPO extends UserSidebarPO {
+public class UserAddressPO extends UserSidebarPO {
     private WebDriver driver;
 
-    public UserOrderPO(WebDriver driver){
+    public UserAddressPO(WebDriver driver){
         super(driver);
         this.driver = driver;
     }
+
 
 
 }

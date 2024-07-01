@@ -1,4 +1,4 @@
-package pageUIs.user;
+package pageUIs.nopCommerce.user;
 
 public class UserSideBarPageUI {
     public static final String ORDER_LINK = "Xpath=//div[contains(@class, 'block-account-navigation')]//a[text()='Orders']";
