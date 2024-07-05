@@ -22,4 +22,9 @@ public class HomePageUI {
     public static final String DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER_2 = "Xpath=//div[text()='%s']/ancestor::th/preceding-sibling::th";
 
     public static final String ALL_VALUE_BY_COLUMN_INDEX = "Xpath=//td[%s]";
+    //Jquery
+    public static final String UPLOAD_FILE_TYPE = "Css=input[type='file']";
+    public static final String FILE_LOADING_BY_FILE_NAME = "Xpath=//p[@class='name' and text()='%s']";
+    public static final String UPLOAD_BUTTON = "Css=td>button.start";
+    public static final String FILE_UPLOAD_SUCCESS_BY_FILE_NAME = "Xpath=//p[@class='name']/a[@title='%s']";
 }

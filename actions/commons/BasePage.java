@@ -11,6 +11,7 @@ import pageObjects.nopCommerce.user.UserAddressPO;
 import pageObjects.nopCommerce.user.UserCustomerInfoPO;
 import pageObjects.nopCommerce.user.UserOrderPO;
 import pageObjects.nopCommerce.user.UserRewardPointPO;
+import pageUIs.jQuery.HomePageUI;
 import pageUIs.nopCommerce.BasePageUI;
 
 import java.time.Duration;
@@ -372,7 +373,18 @@ public class BasePage {
         clickToElement(driver, BasePageUI.ORDER_LINK);
         return PageGenerator.getUserOrderPage(driver);
     }
+    public void uploadMultipleFiles(WebDriver driver, String... fileNames) {
+        String filePath = GlobalConstants.UPLOAD_PATH;
+        String fullFileName = "";
 
+        for (String file : fileNames) {
+            fullFileName +=  filePath + file + "\n";
+        }
+
+        fullFileName = fullFileName.trim();
+
+        getElement(driver, HomePageUI.UPLOAD_FILE_TYPE).sendKeys(fullFileName);
+    }
     public void sleepInSecond(long timeInSecond){
         try {
             Thread.sleep(timeInSecond * 1000);

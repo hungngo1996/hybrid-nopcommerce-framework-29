@@ -1,4 +1,4 @@
-package com.nopcommerce.users;
+package jQuery.cases;
 
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;

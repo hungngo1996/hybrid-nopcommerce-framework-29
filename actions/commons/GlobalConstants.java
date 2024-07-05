@@ -4,12 +4,11 @@ public class GlobalConstants {
     // System Infor
     public static final String PROJECT_PATH = System.getProperty("user.dir");
     public static final String OS_NAME = System.getProperty("os.name");
-
+    public static final String SEPARATOR = System.getProperty("file.separator");
     // App Infor User
     public static final String DEV_USER_URL = "https://demo.nopcommerce.com/";
     public static final String STAGING_USER_URL = "https://demo.nopcommerce.com/";
     public static final String LIVE_USER_URL = "https://live.nopcommerce.com/";
-
     // App Infor Admin
     public static final String DEV_ADMIN_URL = "https://admin-demo.nopcommerce.com/";
     public static final String STAGING_ADMIN_URL = "https://admin-demo.nopcommerce.com/";
@@ -22,13 +21,14 @@ public class GlobalConstants {
     public static final long LONG_TIME = 30;
 
     // Download/Upload file
-    public static final String UPLOAD_PATH = PROJECT_PATH + "/uploadFiles/";
-    public static final String DOWNLOAD_PATH = PROJECT_PATH + "/downloadFiles/";
+
+    public static final String UPLOAD_PATH = PROJECT_PATH + SEPARATOR + "uploadFiles" + SEPARATOR;
+    public static final String DOWNLOAD_PATH = PROJECT_PATH + SEPARATOR + "downloadFiles" + SEPARATOR;
 
     // Retry Case Failed
     public static final int RETRY_NUMBER = 3;
     // Browser Logs/ Extension
-    public static final String BROWSER_LOG_PATH = PROJECT_PATH + "/browserLogs/";
+    public static final String BROWSER_LOG_PATH = PROJECT_PATH + SEPARATOR + "browserLogs" + SEPARATOR;
     public static final String BROWSER_EXTENSION_PATH = PROJECT_PATH + "/browserExtensions/";
     // HTML Report Folder
     public static final String REPORTING_PATH = PROJECT_PATH + "/htmlReportNG/";

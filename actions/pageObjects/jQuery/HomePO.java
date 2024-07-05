@@ -1,6 +1,7 @@
 package pageObjects.jQuery;
 
 import commons.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -105,5 +106,23 @@ public class HomePO  extends BasePage {
             allTextValue.add(element.getText());
         }
         return allTextValue;
+    }
+
+    public boolean isFileLoadedByName(String fileName) {
+        waitForElementVisible(driver,HomePageUI.FILE_LOADING_BY_FILE_NAME, fileName);
+        return isElementDisplayed(driver,HomePageUI.FILE_LOADING_BY_FILE_NAME, fileName);
+    }
+
+    public boolean isFileUploadedByName(String fileName) {
+        waitForElementVisible(driver,HomePageUI.FILE_UPLOAD_SUCCESS_BY_FILE_NAME, fileName);
+        return isElementDisplayed(driver,HomePageUI.FILE_UPLOAD_SUCCESS_BY_FILE_NAME, fileName);
+    }
+
+    public void clickToUploadButton(WebDriver driver) {
+        List<WebElement> startButtons = getListElement(driver, HomePageUI.UPLOAD_BUTTON);
+        for (WebElement button : startButtons ){
+            button.click();
+            sleepInSecond(3);
+        }
     }
 }
