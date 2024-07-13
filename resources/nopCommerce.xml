@@ -10,7 +10,7 @@
     <test name="Run on Firefox browser">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="com.nopcommerce.users.Level_13_Verify" />
+            <class name="com.nopcommerce.users.Level_14_Log4J" />
         </classes>
     </test>
 </suite>

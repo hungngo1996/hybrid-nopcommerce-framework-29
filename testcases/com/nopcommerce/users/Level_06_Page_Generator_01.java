@@ -19,6 +19,7 @@ public class Level_06_Page_Generator_01 extends BaseTest {
     private UserCustomerInfoPO customerInfoPage;
     private UserRegisterPO registerPage;
     private String firstName, lastName, day, month, year, emailAddress, companyName, password;
+
     @Parameters("browser")
     @BeforeClass
     public void beforeClass(String browserName) {

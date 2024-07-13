@@ -21,6 +21,7 @@ public class Level_03_Page_Object_Pattern extends BaseTest {
     private UserCustomerInfoPO customerInfoPage;
     private UserRegisterPO registerPage;
     private String firstName, lastName, day, month, year, emailAddress, companyName, password;
+
     @BeforeClass
     public void beforeClass() {
         driver = new FirefoxDriver();

@@ -20,6 +20,9 @@ public class Level_10_Dynamic_Locator extends BaseTest {
     private UserOrderPO orderPage;
     private UserRewardPointPO rewardPointPage;
     private String firstName, lastName, day, month, year, emailAddress, companyName, password;
+
+
+
     @Parameters("browser")
     @BeforeClass
     public void beforeClass(String browserName) {

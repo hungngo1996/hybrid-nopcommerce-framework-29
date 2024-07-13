@@ -1,0 +1,14 @@
+[2024-07-13 11:01:42,426 INFO com.nopcommerce.users.Level_14_Log4J] - User_01_Register - Step 01: Open Register Page
+[2024-07-13 11:01:43,928 INFO com.nopcommerce.users.Level_14_Log4J] - User_01_Register - Step 02: Click To Maile Radio button
+[2024-07-13 11:01:44,024 INFO com.nopcommerce.users.Level_14_Log4J] - User_01_Register - Step 03: Enter to FirtName textbox with valueThomas
+[2024-07-13 11:01:44,112 INFO com.nopcommerce.users.Level_14_Log4J] - User_01_Register - Step 04: Enter to LastName textbox with valueMuller
+[2024-07-13 11:01:44,209 INFO com.nopcommerce.users.Level_14_Log4J] - User_01_Register - Step 05: Select Day dropdown with value29
+[2024-07-13 11:01:44,309 INFO com.nopcommerce.users.Level_14_Log4J] - User_01_Register - Step 06: Select Month dropdown with valueMarch
+[2024-07-13 11:01:44,382 INFO com.nopcommerce.users.Level_14_Log4J] - User_01_Register - Step 07: Select Year dropdown with value1986
+[2024-07-13 11:01:44,455 INFO com.nopcommerce.users.Level_14_Log4J] - User_01_Register - Step 08: Enter to Email textbox with valuethomasmuller22443@gmail.com
+[2024-07-13 11:01:44,537 INFO com.nopcommerce.users.Level_14_Log4J] - User_01_Register - Step 09: Enter to Company textbox with valueBayern Munich
+[2024-07-13 11:01:44,617 INFO com.nopcommerce.users.Level_14_Log4J] - User_01_Register - Step 10: Enter to Password textbox with value123456789
+[2024-07-13 11:01:44,727 INFO com.nopcommerce.users.Level_14_Log4J] - User_01_Register - Step 11: Enter to Confirm Password textbox with value123456789
+[2024-07-13 11:01:44,798 INFO com.nopcommerce.users.Level_14_Log4J] - User_01_Register - Step 12: Click to Register button
+[2024-07-13 11:01:47,350 INFO com.nopcommerce.users.Level_14_Log4J] - User_01_Register - Step 13: Get Register Success massage
+[2024-07-13 11:01:47,401 INFO com.nopcommerce.users.Level_14_Log4J] - User_01_Register - Step 14: Click to Logout link

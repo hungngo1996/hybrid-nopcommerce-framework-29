@@ -19,6 +19,7 @@ public class Level_05_Page_Factory extends BaseTest {
     private CustomerInfoPageFactory customerInfoPage;
     private RegisterPageFactory registerPage;
     private String firstName, lastName, day, month, year, emailAddress, companyName, password;
+
     @Parameters("browser")
     @BeforeClass
     public void beforeClass(String browserName) {

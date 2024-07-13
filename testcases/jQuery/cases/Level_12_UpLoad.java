@@ -15,6 +15,8 @@ public class Level_12_UpLoad extends BaseTest {
     private WebDriver driver;
     private HomePO homePage;
     private String cmhue,cmhn,cmhcm;
+
+
     @Parameters({"browser","url"})
     @BeforeClass
     public void beforeClass(String browserName, String url) {

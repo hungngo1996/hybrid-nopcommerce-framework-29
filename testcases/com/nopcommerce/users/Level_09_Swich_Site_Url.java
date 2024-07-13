@@ -27,6 +27,7 @@ public class Level_09_Swich_Site_Url extends BaseTest {
     private String userURL, adminURL;
     private String adminEmailAdress, adminPassword;
 
+
     @Parameters({"browser","userURL","adminURL"})
     @BeforeClass
     public void beforeClass(String browserName, String urlUser, String adminURL) {

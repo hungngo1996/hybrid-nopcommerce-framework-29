@@ -6,16 +6,21 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
-
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import java.time.Duration;
-import java.util.Locale;
 import java.util.Random;
 
 public class BaseTest {
     private WebDriver driver;
+    protected Log log;
+    protected BaseTest() {
+        log = LogFactory.getLog(getClass());
+    }
     protected int generateRandomNumber() {
         return new Random().nextInt(99999);
     }
+
     protected WebDriver getBrowserDriver(String browserName){
         BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
         switch (browser){

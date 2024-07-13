@@ -7,11 +7,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.*;
+import pageObjects.PageGenerator;
 import pageObjects.nopCommerce.user.*;
 
-
-public class Level_08_Page_Navigation extends BaseTest {
+public class Level_14_Log4J extends BaseTest {
     private WebDriver driver;
     private UserHomePO homepage;
     private UserLoginPO loginPage;
@@ -41,26 +40,51 @@ public class Level_08_Page_Navigation extends BaseTest {
     }
     @Test
     public void User_01_Register() {
-        // Từ homepage qua registerpage
+        log.info("User_01_Register - Step 01: Open 'Register' page");
         registerPage = homepage.openRegisterPage();
 
+        log.info("User_01_Register - Step 02: Click To Maile Radio button");
         registerPage.clickToMaleRadio();
+
+        log.info("User_01_Register - Step 03: Enter to 'FirtName' textbox with value" + " " + firstName);
         registerPage.enterToFirstNameTextbox(firstName);
+
+        log.info("User_01_Register - Step 04: Enter to 'LastName' textbox with value" + " " + lastName);
         registerPage.enterToLastNameTextbox(lastName);
+
+        log.info("User_01_Register - Step 05: Select 'Day' dropdown with value" + " " + day);
         registerPage.selectDayDropdown(day);
+
+        log.info("User_01_Register - Step 06: Select 'Month' dropdown with value" + " " + month);
         registerPage.selectMonthDropdown(month);
+
+        log.info("User_01_Register - Step 07: Select 'Year' dropdown with value" + " " + year);
         registerPage.selectYearDropdown(year);
+
+        log.info("User_01_Register - Step 08: Enter to 'Email' textbox with value" + " " + emailAddress);
         registerPage.enterToEmailTextbox(emailAddress);
+
+        log.info("User_01_Register - Step 09: Enter to 'Company' textbox with value" + " " + companyName);
         registerPage.enterToCompanyTextbox(companyName);
+
+        log.info("User_01_Register - Step 10: Enter to 'Password' textbox with value" + " " + password);
         registerPage.enterToPasswordTextbox(password);
+
+        log.info("User_01_Register - Step 11: Enter to 'Confirm Password' textbox with value" + " " + password);
         registerPage.enterToConfirmPasswordTextbox(password);
+
+        log.info("User_01_Register - Step 12: Click to 'Register' button");
         registerPage.clickToRegisterButton();
 
+        log.info("User_01_Register - Step 13: Verify 'Register Success Message' visible");
         Assert.assertEquals(registerPage.getRegisterSuccessMassage(), "Your registration completed");
+
+        log.info("User_01_Register - Step 14: Click to 'Logout' link");
+        homepage = registerPage.clickToLogoutLink();
     }
     @Test
     public void User_02_Login() {
-        loginPage = registerPage.openLoginPage();
+        loginPage = homepage.openLoginPage();
 
         homepage = loginPage.loginToSystem(emailAddress, password);
 
@@ -80,21 +104,26 @@ public class Level_08_Page_Navigation extends BaseTest {
 
     }
     @Test
-    public void User_04_Switch_Page() {
+    public void User_04_Dynamic_Page() {
         // Customer Infor > Address
-        addressPage  = customerInfoPage.openAddressPage();
+        customerInfoPage.openSidebarLinkByPageNames("Addresses");
+        addressPage = PageGenerator.getUserAddressPage(driver);
 
         // Address > Reward Point
-        rewardPointPage = addressPage.openRewardPointPage();
+        addressPage.openSidebarLinkByPageNames("Reward points");
+        rewardPointPage = PageGenerator.getUserRewardPointPage(driver);
 
         // Reward Point > Order
-        orderPage = rewardPointPage.openOrderPage();
+        rewardPointPage.openSidebarLinkByPageNames("Orders");
+        orderPage = PageGenerator.getUserOrderPage(driver);
 
         // Order > Address
-        addressPage = orderPage.openAddressPage();
+        orderPage.openSidebarLinkByPageNames("Addresses");
+        addressPage = PageGenerator.getUserAddressPage(driver);
 
         // Address > Customer Infor
-        customerInfoPage = addressPage.openCustomerInfoPage();
+        addressPage.openSidebarLinkByPageNames("Customer info");
+        customerInfoPage = PageGenerator.getUserCustomerInfoPage(driver);
     }
     @AfterClass
     public void afterClass() {

@@ -2,7 +2,6 @@
 
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -20,6 +19,7 @@ import pageObjects.nopCommerce.user.*;
         private UserOrderPO orderPage;
         private UserRewardPointPO rewardPointPage;
         private String firstName, lastName, day, month, year, emailAddress, companyName, password;
+
         @Parameters("browser")
         @BeforeClass
         public void beforeClass(String browserName) {
