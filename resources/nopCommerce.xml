@@ -3,11 +3,14 @@
 <suite name="NopCommerce Automation Testing">
     <listeners>
         <listener class-name="commons.MethodListener"></listener>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <listener class-name="reportConfigs.ReportNGListener"/>
     </listeners>
     <parameter name="userURL" value="https://demo.nopcommerce.com/"></parameter>
     <parameter name="adminURL" value="https://admin-demo.nopcommerce.com/"></parameter>
 
-    <test name="Run on Firefox browser">
+    <test name="Run on chrome browser">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
             <class name="com.nopcommerce.users.Level_14_Log4J" />
