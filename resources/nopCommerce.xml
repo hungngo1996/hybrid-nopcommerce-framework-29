@@ -3,17 +3,15 @@
 <suite name="NopCommerce Automation Testing">
     <listeners>
         <listener class-name="commons.MethodListener"></listener>
-        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
-        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
-        <listener class-name="reportConfigs.ReportNGListener"/>
+        <listener class-name="reportConfigs.AllureListener"/>
     </listeners>
-    <parameter name="userURL" value="https://demo.nopcommerce.com/"></parameter>
+    <parameter name="userURL" value="http://demo.nopcommerce/"></parameter>
     <parameter name="adminURL" value="https://admin-demo.nopcommerce.com/"></parameter>
 
-    <test name="Run on chrome browser">
+    <test name="Run on Chrome browser">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="com.nopcommerce.users.Level_14_Log4J" />
+            <class name="com.nopcommerce.users.Level_16_AllureReport" />
         </classes>
     </test>
 </suite>
