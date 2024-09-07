@@ -16,5 +16,6 @@
     <orderEntry type="library" name="commons-collections-3.2.1" level="project" />
     <orderEntry type="library" name="Extent5" level="project" />
     <orderEntry type="library" name="allure-2.28.0" level="project" />
+    <orderEntry type="library" name="Jira" level="project" />
   </component>
 </module>

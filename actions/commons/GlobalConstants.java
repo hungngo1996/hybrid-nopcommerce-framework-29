@@ -4,7 +4,6 @@ public class GlobalConstants {
     // System Infor
     public static final String PROJECT_PATH = System.getProperty("user.dir");
     public static final String OS_NAME = System.getProperty("os.name");
-
     public static final String JAVA_VERSION = System.getProperty("java.version");
     public static final String SEPARATOR = System.getProperty("file.separator");
     // App Infor User
@@ -40,4 +39,8 @@ public class GlobalConstants {
     public static final String DATA_TEST_PATH = PROJECT_PATH + "/dataTest/";
     public static final String ENVIRONMENT_CONFIG_PATH = PROJECT_PATH + "/environmentConfig/";
 
+    public static final String JIRA_SITE_URL = "https://hungautomatiom.atlassian.net";
+    public static final String JIRA_USERNAME = "hung211196@gmail.com";
+    public static final String JIRA_API_KEY = "ATATT3xFfGF0I3c79i8p3zXqmxq8nGXN5T9OrE0KWJsGEEgyxf_d-p7EY_rMjVkcl8w6lS1ZweQhlK42XJQmXSrs55qLsOaK6fO6S1XO4QDYAd5VpRCwiq72M1cQuxLJ5EzUO22xqJPQOJClCkwOQAy33vyu2of2WjfWhxlBucRCEr_IZRmPlmM=0CBCE78C";
+    public static final String JIRA_PROJECT_KEY = "KAN";
 }

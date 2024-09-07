@@ -225,8 +225,25 @@ public class BasePage {
             getElement(driver, castParameter(locator, restParameter)).click();
         }
     }
+    public void overideGlobalTimeout(WebDriver driver, long timeInSecond)
+    {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeInSecond));
+    }
     public boolean isElementDisplayed(WebDriver driver, String locator){
-        return getElement(driver,locator).isDisplayed();
+            return getElement(driver,locator).isDisplayed();
+    }
+    public boolean isElementUndisplayed(WebDriver driver, String locator){
+        overideGlobalTimeout(driver,GlobalConstants.SHORT_TIME);
+        List<WebElement> elements = getListElement(driver,locator);
+        overideGlobalTimeout(driver,GlobalConstants.LONG_TIME);
+        // Case 1 - Verify confirm email textbox is displaued (visible)
+        if (elements.size() == 0){
+            return true;
+        } else if (elements.size()> 0 && !elements.get(0).isDisplayed()){
+            return true;
+        }  else {
+            return false;
+        }
     }
     public boolean isElementDisplayed(WebDriver driver, String locator, String... restParameter){
         return getElement(driver,castParameter(locator, restParameter)).isDisplayed();
@@ -351,6 +368,12 @@ public class BasePage {
     public void  waitForElementClickable(WebDriver driver, String locator, String... restParameter){
         new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.elementToBeClickable(getByLocator(castParameter(locator, restParameter))));
     }
+    public void  waitForElementAttribute(WebDriver driver, String locator, String attributeName,String attributeValue){
+        new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.attributeToBe(getByLocator(locator), attributeName, attributeValue));
+    }
+    public void  waitForElementAttribute(WebDriver driver, String locator, String attributeName,String attributeValue, String... restParameter){
+        new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.attributeToBe(getByLocator(castParameter(locator, restParameter)), attributeName, attributeValue));
+    }
     public UserAddressPO openAddressPage(WebDriver driver) {
         waitForElementClickable(driver, BasePageUI.ADDRESS_LINK);
         clickToElement(driver, BasePageUI.ADDRESS_LINK);
@@ -390,6 +413,50 @@ public class BasePage {
             Thread.sleep(timeInSecond * 1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void enterToTextboxById(WebDriver driver, String textboxId, String value) {
+        waitForElementVisible(driver, BasePageUI.TEXT_BY_ID, textboxId);
+        sendKeyToElement(driver, BasePageUI.TEXT_BY_ID, value, textboxId);
+    }
+
+    public void clickToButtonByText(WebDriver driver, String buttonText) {
+        waitForElementClickable(driver, BasePageUI.BUTTON_BY_TEXT, buttonText);
+        clickToElement(driver,BasePageUI.BUTTON_BY_TEXT, buttonText);
+    }
+
+    public void clickToRadioByID(WebDriver driver, String radioId) {
+        waitForElementClickable(driver,BasePageUI.RADIO_BY_ID, radioId);
+        checkToCheckboxRadio(driver,BasePageUI.RADIO_BY_ID, radioId);
+    }
+
+    public void clickToCheckboxById(WebDriver driver, String checkboxId) {
+        waitForElementClickable(driver, BasePageUI.CHECKBOX_BY_ID, checkboxId);
+        checkToCheckboxRadio(driver, BasePageUI.CHECKBOX_BY_ID, checkboxId);
+    }
+
+    public String getTextboxValueById(WebDriver driver, String textboxId) {
+        waitForElementVisible(driver, BasePageUI.TEXT_BY_ID, textboxId);
+        return getElementAttribute(driver, BasePageUI.TEXT_BY_ID,"value",textboxId);
+    }
+
+    public boolean isRadioByIdSelected(WebDriver driver, String radioId) {
+        waitForElementSelected(driver,BasePageUI.RADIO_BY_ID,radioId);
+        return isElementSelected(driver, BasePageUI.RADIO_BY_ID, radioId);
+    }
+    public boolean isCheckboxByIdSelected(WebDriver driver, String checkboxId) {
+        waitForElementSelected(driver,BasePageUI.CHECKBOX_BY_ID, checkboxId);
+        return isElementSelected(driver, BasePageUI.CHECKBOX_BY_ID, checkboxId);
+    }
+    public Set<Cookie> getAllCookies(WebDriver driver)
+    {
+        return driver.manage().getCookies();
+    }
+    public void setCookies(WebDriver driver, Set<Cookie> cookies)
+    {
+        for (Cookie cookie:cookies){
+            driver.manage().addCookie(cookie);
         }
     }
 }
