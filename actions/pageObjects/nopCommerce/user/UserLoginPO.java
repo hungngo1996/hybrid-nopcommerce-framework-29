@@ -3,7 +3,7 @@ package pageObjects.nopCommerce.user;
 import commons.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
-import pageObjects.PageGenerator;
+import pageObjects.nopCommerce.PageGenerator;
 import pageUIs.nopCommerce.user.UserLoginPageUI;
 
 public class UserLoginPO extends BasePage {

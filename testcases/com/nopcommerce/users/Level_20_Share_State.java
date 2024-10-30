@@ -3,17 +3,14 @@ package com.nopcommerce.users;
 import com.nopcommerce.common.Login;
 import commons.BaseTest;
 import io.qameta.allure.Feature;
-import org.apache.commons.io.filefilter.FalseFileFilter;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.PageGenerator;
+import pageObjects.nopCommerce.PageGenerator;
 import pageObjects.nopCommerce.user.*;
-
-import java.lang.reflect.Method;
 
 @Feature("User")
 public class Level_20_Share_State extends BaseTest {

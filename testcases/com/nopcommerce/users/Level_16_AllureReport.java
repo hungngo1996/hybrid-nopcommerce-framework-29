@@ -1,6 +1,5 @@
 package com.nopcommerce.users;
 
-import com.aventstack.extentreports.Status;
 import commons.BaseTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
@@ -10,9 +9,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.PageGenerator;
+import pageObjects.nopCommerce.PageGenerator;
 import pageObjects.nopCommerce.user.*;
-import reportConfigs.ExtentManager;
 
 import java.lang.reflect.Method;
 @Feature("User")

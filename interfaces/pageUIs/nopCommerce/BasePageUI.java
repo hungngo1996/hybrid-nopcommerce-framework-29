@@ -10,4 +10,7 @@ public class BasePageUI {
     public static final String CHECKBOX_BY_ID = "Xpath=//input[@id='%s']";
     public static final String RADIO_BY_ID = "Xpath=//input[@id='%s']";
     public static final String BUTTON_BY_TEXT = "Xpath=//button[text()='%s']";
+
+    //OrangeHRM
+    public static final String LOADING_ICON = "Css=div.oxd-loading-spinner";
 }

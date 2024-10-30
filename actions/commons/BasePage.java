@@ -1,19 +1,23 @@
 package commons;
 
+import io.reactivex.rxjava3.flowables.GroupedFlowable;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObjects.*;
+import pageObjects.nopCommerce.PageGenerator;
 import pageObjects.nopCommerce.user.UserAddressPO;
 import pageObjects.nopCommerce.user.UserCustomerInfoPO;
 import pageObjects.nopCommerce.user.UserOrderPO;
 import pageObjects.nopCommerce.user.UserRewardPointPO;
+import pageObjects.orangeHRM.pim.employee.PersonalDetailsPO;
 import pageUIs.jQuery.HomePageUI;
 import pageUIs.nopCommerce.BasePageUI;
+import pageUIs.orangeHRM.pim.PersonalDetailsPageUI;
 
+import java.security.Key;
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
@@ -91,6 +95,9 @@ public class BasePage {
     public WebElement getElement(WebDriver driver, String locator){
         return driver.findElement(getByLocator(locator));
     }
+    public Dimension getElementSize(WebDriver driver, String locator){
+        return getElement(driver, locator).getSize();
+    }
     public List<WebElement> getListElement(WebDriver driver, String locator){
         return driver.findElements(getByLocator(locator));
     }
@@ -141,7 +148,14 @@ public class BasePage {
         getElement(driver, locator).click();
     }
     public void sendKeyToElement(WebDriver driver, String locator, String keysToSend){
-        getElement(driver, locator).clear();
+        Keys key = null;
+        if (GlobalConstants.OS_NAME.startsWith("Windows")){
+            key = key.CONTROL;
+        } else {
+            key = key.COMMAND;
+        }
+        getElement(driver, locator).sendKeys(Keys.chord(key,"a",Keys.BACK_SPACE));
+        sleepInSecond(1);
         getElement(driver, locator).sendKeys(keysToSend);
     }
     public void sendKeyToElement(WebDriver driver, String locator, String keysToSend, String... restParameter){
@@ -162,11 +176,11 @@ public class BasePage {
     }
     public void selectItemInCustomDropdown(WebDriver driver, String parentLocator, String childItemLocator, String expectedItem) {
         getElement(driver, parentLocator).click();
-        sleepInSecond(2);
+        sleepInSecond(1);
 
-        List<WebElement> allItems = new WebDriverWait(driver, Duration.ofSeconds(15))
-                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(childItemLocator)));
-        sleepInSecond(2);
+        List<WebElement> allItems = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIME))
+                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(childItemLocator)));
+        sleepInSecond(1);
         for (WebElement item : allItems) {
             if (item.getText().trim().equals(expectedItem)) {
 
@@ -309,6 +323,11 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", getElement(driver, locator));
         sleepInSecond(3);
     }
+    public void clickToElementByJS(WebDriver driver, String locator, String... restParameter) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", getElement(driver, castParameter(locator, restParameter)));
+        sleepInSecond(2);
+    }
+
 
     public void scrollToElementOnTopByJS(String locator, WebDriver driver) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getElement(driver, locator));
@@ -355,6 +374,10 @@ public class BasePage {
     }
     public void  waitForElementInvisible(WebDriver driver, String locator){
         new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locator)));
+    }
+    public boolean waitForListElementInvisible(WebDriver driver, String locator){
+        return new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME))
+                .until(ExpectedConditions.invisibilityOfAllElements(getListElement(driver,locator)));
     }
     public void  waitForElementSelected(WebDriver driver, String locator){
         new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIME)).until(ExpectedConditions.elementToBeSelected(getByLocator(locator)));
@@ -458,5 +481,12 @@ public class BasePage {
         for (Cookie cookie:cookies){
             driver.manage().addCookie(cookie);
         }
+    }
+    public boolean isSuccessMessageIsDisplayed(WebDriver driver) {
+        waitForElementVisible(driver, pageUIs.orangeHRM.BasePageUI.SUCCESS_MESSAGE);
+        return isElementDisplayed(driver, pageUIs.orangeHRM.BasePageUI.SUCCESS_MESSAGE);
+    }
+    public boolean waitAllLoadingIconInvisible(WebDriver driver) {
+        return waitForListElementInvisible(driver, BasePageUI.LOADING_ICON);
     }
 }

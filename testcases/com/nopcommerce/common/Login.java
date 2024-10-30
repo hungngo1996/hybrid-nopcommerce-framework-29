@@ -1,17 +1,14 @@
 package com.nopcommerce.common;
 
 import commons.BaseTest;
-import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
-import jiraConfigs.JiraCreateIssue;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import pageObjects.PageGenerator;
+import pageObjects.nopCommerce.PageGenerator;
 import pageObjects.nopCommerce.user.*;
 
-import java.lang.reflect.Method;
 import java.util.Set;
 
 @Feature("User")

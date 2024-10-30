@@ -2,8 +2,11 @@ package commons;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +15,8 @@ import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.Random;
 
@@ -49,16 +54,49 @@ public class BaseTest {
         return driver;
     }
     protected WebDriver getBrowserDriver(String browserName, String url){
+        Path path = null;
+        File extensionFilePath = null;
+
         BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
         switch (browser){
             case FIREFOX:
                 driver = new FirefoxDriver();
+                Path xpiPath = Paths.get(GlobalConstants.BROWSER_EXTENSION_PATH + "Wappalyzer.xpi");
+                FirefoxDriver ffDriver = (FirefoxDriver) driver;
+                ffDriver.installExtension(xpiPath);
+                driver = ffDriver;
                 break;
             case EDGE:
-                driver = new EdgeDriver();
+                EdgeOptions eOptions = new EdgeOptions();
+                path = Paths.get(GlobalConstants.BROWSER_EXTENSION_PATH + "Wappalyzer.crx");
+                extensionFilePath = new File(path.toUri());
+                eOptions.addExtensions(extensionFilePath);
+                driver = new EdgeDriver(eOptions);
                 break;
             case CHROME:
-                driver = new ChromeDriver();
+                ChromeOptions cOptions = new ChromeOptions();
+                path = Paths.get(GlobalConstants.BROWSER_EXTENSION_PATH + "Wappalyzer.crx");
+                extensionFilePath = new File(path.toUri());
+                cOptions.addExtensions(extensionFilePath);
+                driver = new ChromeDriver(cOptions);
+                break;
+            case HCHROME:
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("-headless");
+                options.addArguments("window-size=1920x1080");
+                driver = new ChromeDriver(options);
+                break;
+            case HFIREFOX:
+                FirefoxOptions chromeOptions = new FirefoxOptions();
+                chromeOptions.addArguments("-headless");
+                chromeOptions.addArguments("window-size=1920x1080");
+                driver = new FirefoxDriver(chromeOptions);
+                break;
+            case HEDGE:
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("-headless");
+                edgeOptions.addArguments("window-size=1920x1080");
+                driver = new EdgeDriver(edgeOptions);
                 break;
             default:
                 throw new RuntimeException("Browser name is not valid");

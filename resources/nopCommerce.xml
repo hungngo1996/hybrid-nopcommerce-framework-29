@@ -7,11 +7,24 @@
     <parameter name="userURL" value="http://demo.nopcommerce/"></parameter>
     <parameter name="adminURL" value="http://admin-demo.nopcommerce/"></parameter>
 
-    <test name="Run on Firefox browser">
-        <parameter name="browser" value="firefox"></parameter>
+    <test name="Run on Firefox Headless">
+        <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="com.nopcommerce.common.Login" />
-            <class name="com.nopcommerce.users.Level_20_Share_State" />
+            <class name="com.nopcommerce.users.Level_21_Browser_Config"/>
+        </classes>
+    </test>
+
+    <test name="Run on Chrome Headless">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.nopcommerce.users.Level_21_Browser_Config"/>
+        </classes>
+    </test>
+
+    <test name="Run on Edge Headless">
+        <parameter name="browser" value="edge"/>
+        <classes>
+            <class name="com.nopcommerce.users.Level_21_Browser_Config"/>
         </classes>
     </test>
 </suite>

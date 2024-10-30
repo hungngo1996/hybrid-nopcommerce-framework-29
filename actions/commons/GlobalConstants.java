@@ -30,7 +30,7 @@ public class GlobalConstants {
     public static final int RETRY_NUMBER = 3;
     // Browser Logs/ Extension
     public static final String BROWSER_LOG_PATH = PROJECT_PATH + SEPARATOR + "browserLogs" + SEPARATOR;
-    public static final String BROWSER_EXTENSION_PATH = PROJECT_PATH + "/browserExtensions/";
+    public static final String BROWSER_EXTENSION_PATH = PROJECT_PATH + "/browserExtensions/" + SEPARATOR;
     // HTML Report Folder
     public static final String REPORTING_PATH = PROJECT_PATH + SEPARATOR + "htmlReportNG" + SEPARATOR;
     public static final String EXTENT_PATH = PROJECT_PATH + SEPARATOR + "htmlExtent" + SEPARATOR;
