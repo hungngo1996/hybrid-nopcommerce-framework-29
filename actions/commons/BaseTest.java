@@ -54,30 +54,31 @@ public class BaseTest {
         return driver;
     }
     protected WebDriver getBrowserDriver(String browserName, String url){
-        Path path = null;
-        File extensionFilePath = null;
-
+//        Path path = null;
+//        File extensionFilePath = null;
         BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
         switch (browser){
             case FIREFOX:
                 driver = new FirefoxDriver();
-                Path xpiPath = Paths.get(GlobalConstants.BROWSER_EXTENSION_PATH + "Wappalyzer.xpi");
-                FirefoxDriver ffDriver = (FirefoxDriver) driver;
-                ffDriver.installExtension(xpiPath);
-                driver = ffDriver;
+//                Path xpiPath = Paths.get(GlobalConstants.BROWSER_EXTENSION_PATH + "Wappalyzer.xpi");
+//                FirefoxDriver ffDriver = (FirefoxDriver) driver;
+//                ffDriver.installExtension(xpiPath);
+//                driver = ffDriver;
                 break;
             case EDGE:
                 EdgeOptions eOptions = new EdgeOptions();
-                path = Paths.get(GlobalConstants.BROWSER_EXTENSION_PATH + "Wappalyzer.crx");
-                extensionFilePath = new File(path.toUri());
-                eOptions.addExtensions(extensionFilePath);
+//                path = Paths.get(GlobalConstants.BROWSER_EXTENSION_PATH + "Wappalyzer.crx");
+//                extensionFilePath = new File(path.toUri());
+//                eOptions.addExtensions(extensionFilePath);
                 driver = new EdgeDriver(eOptions);
                 break;
             case CHROME:
                 ChromeOptions cOptions = new ChromeOptions();
-                path = Paths.get(GlobalConstants.BROWSER_EXTENSION_PATH + "Wappalyzer.crx");
-                extensionFilePath = new File(path.toUri());
-                cOptions.addExtensions(extensionFilePath);
+//                path = Paths.get(GlobalConstants.BROWSER_EXTENSION_PATH + "Wappalyzer.crx");
+//                extensionFilePath = new File(path.toUri());
+//                cOptions.addExtensions(extensionFilePath);
+                cOptions.addArguments("--user-data-dir=C:\\Users\\Hung Ngo\\AppData\\Local\\Google\\Chrome\\User Data\\");
+                cOptions.addArguments("--profile-directory=Profile 2");
                 driver = new ChromeDriver(cOptions);
                 break;
             case HCHROME:

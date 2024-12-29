@@ -17,5 +17,8 @@
     <orderEntry type="library" name="Extent5" level="project" />
     <orderEntry type="library" name="allure-2.28.0" level="project" />
     <orderEntry type="library" name="Jira" level="project" />
+    <orderEntry type="library" name="faker" level="project" />
+    <orderEntry type="library" name="selenium-server-4.27.0" level="project" />
+    <orderEntry type="library" name="FakerNet" level="project" />
   </component>
 </module>

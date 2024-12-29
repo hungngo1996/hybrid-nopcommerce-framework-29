@@ -4,27 +4,27 @@
     <listeners>
         <listener class-name="commons.MethodListener"></listener>
     </listeners>
-    <parameter name="userURL" value="http://demo.nopcommerce/"></parameter>
-    <parameter name="adminURL" value="http://admin-demo.nopcommerce/"></parameter>
+    <parameter name="userURL" value="https://demo.nopcommerce.com/"></parameter>
+    <parameter name="adminURL" value="https://admin-demo.nopcommerce.com/"></parameter>
 
-    <test name="Run on Firefox Headless">
-        <parameter name="browser" value="firefox"/>
-        <classes>
-            <class name="com.nopcommerce.users.Level_21_Browser_Config"/>
-        </classes>
-    </test>
+<!--    <test name="Run on Firefox Headless">-->
+<!--        <parameter name="browser" value="firefox"/>-->
+<!--        <classes>-->
+<!--            <class name="com.nopcommerce.users.Level_21_Browser_Config"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Run on Chrome Headless">
+    <test name="Run on Chrome">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="com.nopcommerce.users.Level_21_Browser_Config"/>
+            <class name="com.nopcommerce.users.Level_24_Data_FakerNet"/>
         </classes>
     </test>
 
-    <test name="Run on Edge Headless">
-        <parameter name="browser" value="edge"/>
-        <classes>
-            <class name="com.nopcommerce.users.Level_21_Browser_Config"/>
-        </classes>
-    </test>
+<!--    <test name="Run on Edge Headless">-->
+<!--        <parameter name="browser" value="edge"/>-->
+<!--        <classes>-->
+<!--            <class name="com.nopcommerce.users.Level_21_Browser_Config"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>
